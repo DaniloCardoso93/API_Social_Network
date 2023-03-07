@@ -1,10 +1,7 @@
 from django.urls import path
-from . import views
-from rest_framework_simplejwt import views as jwt_views
-from . import views
+from .views import PostView, PostDetailView
 
 urlpatterns = [
-    # path("users/", views.UserView.as_view()),
-    # path("users/<int:user_id>/", views.UserDetailView.as_view()),
-    # path("users/login/", jwt_views.TokenObtainPairView.as_view()),
+    path("posts/", PostView.as_view()),
+    path("posts/<int:post_id>/", PostDetailView.as_view())
 ]
