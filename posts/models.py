@@ -10,21 +10,5 @@ class Post(models.Model):
     private = models.BooleanField(default=False)
     can_comment = models.BooleanField(default=True)
     user = models.ForeignKey(
-        "users.User",
-        on_delete=models.CASCADE,
-        related_name="posts"
-    )
-    like = models.ForeignKey(
-        "likes.Like",
-        on_delete=models.CASCADE,
-        related_name="posts",
-        default=None,
-        null=True
-    )
-    comment = models.ForeignKey(
-        "comments.Comment",
-        on_delete=models.CASCADE,
-        related_name="posts",
-        default=None,
-        null=True
+        "users.User", on_delete=models.CASCADE, related_name="posts"
     )
