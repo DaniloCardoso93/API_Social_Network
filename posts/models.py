@@ -12,7 +12,7 @@ class Post(models.Model):
     user = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,
-        related_name="posts",
+        related_name="posts"
     )
     like = models.ForeignKey(
         "likes.Like",

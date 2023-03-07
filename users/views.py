@@ -5,7 +5,6 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .permissions import CanRetrieveUserOrReadPublicPostPermission
 
 
-
 class UserView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
