@@ -13,6 +13,8 @@ class UserView(CreateAPIView):
 class UserDetailView(RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [CanRetrieveUserOrReadPublicPostPermission]
-    
+
+    lookup_url_kwarg = "user_id"
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
