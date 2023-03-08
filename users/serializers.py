@@ -20,11 +20,13 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "birthdate",
             "gender",
-            "followers_friendships"
+            "followers",
+            "friendships",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
-            "followers_friendships": {"read_only": True}
+            "followers": {"read_only": True},
+            "friendships": {"read_only": True},
         }
 
     def create(self, validated_data: dict) -> User:
@@ -38,3 +40,4 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+    

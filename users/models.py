@@ -23,3 +23,4 @@ class User(AbstractUser):
         choices=UserGender.choices,
         default=UserGender.DEFAULT,
     )
+    # following = models.ForeignKey("followers_friendships.Follower", related_name="follower",on_delete=models.CASCADE,)
