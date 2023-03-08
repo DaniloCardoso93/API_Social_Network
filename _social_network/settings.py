@@ -123,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 SIMPLE_JWT = {
-    "ACESS_TOKEN_LIFETIME": timedelta(hours=15),
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=14),
 }
 
@@ -165,7 +165,6 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "users.User"
-
 
 
 # ACCOUNT_AUTHENTICATION_METHOD = 'email'
