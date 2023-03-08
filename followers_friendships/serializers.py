@@ -1,16 +1,5 @@
 from rest_framework import serializers
-from .models import Follower, Friendship
-
-class FollowerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Follower
-        fields = [
-            "id",
-            "followed",
-            "users", 
-        ]
-        read_only_fields = ["users", "followed",]
-
+from .models import Friendship
 
 class FriendshipSerializer(serializers.ModelSerializer):
     class Meta:

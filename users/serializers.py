@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User
+import ipdb
 
 # def choices_error_message(choices_class):
 #     valid_choices = [choice[0] for choice in choices_class]
@@ -9,6 +10,7 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
         fields = [
@@ -20,14 +22,13 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "birthdate",
             "gender",
-            "followers",
-            "friendships",
+            "followings",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
-            "followers": {"read_only": True},
-            "friendships": {"read_only": True},
+            "followings":{"read_only": True}
         }
+        
 
     def create(self, validated_data: dict) -> User:
         return User.objects.create_user(**validated_data)

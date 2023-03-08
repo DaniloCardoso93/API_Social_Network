@@ -1,24 +1,21 @@
 from django.db import models
 
 
-class Follower(models.Model):
-    class Meta:
-        ordering = ("id",)
-
-    followed = models.BooleanField(default=False)
-    following = models.ForeignKey("users.User", related_name="followers", on_delete=models.CASCADE,)
-    # users = models.ManyToManyField(
-    #     "users.User",
-    #     related_name="followers",
-    # )
+class InvitationChoices(models.TextChoices):
+    DEFAULT = "Send"
+    ACCEPTED = "Accepted"
+    REFUSED = "Refused"
 
 
 class Friendship(models.Model):
     class Meta:
         ordering = ("id",)
 
-    friend = models.BooleanField(default=False)
-    users = models.ManyToManyField(
-        "users.User",
-        related_name="friendships",
-    )
+    sending_user = models.ForeignKey("users.User", related_name="sending_friend", on_delete=models.CASCADE,)
+    receiving_user = models.ForeignKey("users.User", related_name="receiving_friend", on_delete=models.CASCADE,)
+    invitation = models.CharField(max_length=20, choices=InvitationChoices.choices, default=InvitationChoices.DEFAULT)
+
+
+
+    # tenho dado de quem enviou e quem recebeu, ja fazendo relaçao com a tabela de usuario
+    # se o pending estiver falso o usuario_recebeu
