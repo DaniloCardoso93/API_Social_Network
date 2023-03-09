@@ -23,4 +23,4 @@ class User(AbstractUser):
         choices=UserGender.choices,
         default=UserGender.DEFAULT,
     )
-    followings = models.ManyToManyField("self", symmetrical=False)
+    followers = models.ManyToManyField("self", symmetrical=False)
