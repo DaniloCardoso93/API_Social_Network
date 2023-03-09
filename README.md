@@ -1,38 +1,43 @@
 # Documentação da API
+
 ## Tabela de Conteúdos
 
-- [Visão Geral](#1-visão-geral)
+-   [Visão Geral](#1-visão-geral)
 
-- [Diagrama ER](#2-diagrama-er)
+-   [Diagrama ER](#2-diagrama-er)
 
-- [Documentação](#3-documentação)
+-   [Documentação](#3-documentação)
 
-- [Rodando localmente](#4-rodando-localmente)
+-   [Rodando localmente](#4-rodando-localmente)
 
 ## 1. Visão Geral
+
 Visão geral do projeto, um pouco das tecnologias usadas.
 
-- **[Python](https://www.python.org/)**
+-   **[Python](https://www.python.org/)**
 
-- **[Django](https://www.django-rest-framework.org/api-guide/authentication/)**
+-   **[Django](https://www.django-rest-framework.org/api-guide/authentication/)**
 
-- **[Drf spectacular](https://drf-spectacular.readthedocs.io/en/latest/)**
+-   **[Drf spectacular](https://drf-spectacular.readthedocs.io/en/latest/)**
 
-- **[Postgres](https://www.postgresql.org/)**
+-   **[Postgres](https://www.postgresql.org/)**
 
 ## 2. Diagrama ER
-![Diagrama ER](https://github.com/m5-projeto-final-lucira-grupo28/api-rede-social/blob/develop/DER_rede_social.png?raw=true)
+
+![Diagrama ER](https://github.com/m5-projeto-final-lucira-grupo28/api-rede-social/blob/develop/DER.png?raw=true)
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
 Diagrama ER da API definindo as relações entre as tabelas do banco de dados.
 
 ## 3. Documentação
+
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
 Link com a **[Documentação](Em breve)**
 
 ## 4. Rodando localmente
+
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
 ### 4.1 Crie seu ambiente virtual:
@@ -54,6 +59,7 @@ source venv/bin/activate
 # windows:
 .\venv\Scripts\activate
 ```
+
 ### 4.3 Instalando componentes da aplicação
 
 Execute o comando em seu terminal:
@@ -61,6 +67,7 @@ Execute o comando em seu terminal:
 ```bash
 pip install -r requirements.txt
 ```
+
 ### 4.4 Preencha o arquivo .env com os dados do Postgres
 
 ```bash
@@ -82,4 +89,3 @@ Execute o comando em seu terminal:
 ```bash
 python manage.py runserver
 ```
-
