@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
-from comments.models import Comment
 from .serializers import LikeSerializer
 from rest_framework.generics import CreateAPIView, DestroyAPIView
 from posts.models import Post
@@ -13,7 +12,7 @@ class LikeView(CreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    queryset = Comment.objects.all()
+    queryset = Like.objects.all()
     serializer_class = LikeSerializer
 
     lookup_url_kwarg = "post_id"

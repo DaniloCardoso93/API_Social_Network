@@ -1,13 +1,14 @@
-from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from .permissions import PostPermission
 from .models import Post
 from .serializers import PostSerializer
 
 
-class PostView(CreateAPIView):
+class PostView(ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, PostPermission]
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
@@ -18,7 +19,7 @@ class PostView(CreateAPIView):
 
 class PostDetailView(RetrieveUpdateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, PostPermission]
     lookup_url_kwarg = "post_id"
 
     queryset = Post.objects.all()
