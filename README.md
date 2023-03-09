@@ -22,10 +22,9 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 
 ## 2. Diagrama ER
 [ Voltar para o topo ](#tabela-de-conteúdos)
+![Diagrama ER](https://github.com/m5-projeto-final-lucira-grupo28/api-rede-social/blob/develop/DER_rede_social.png?raw=true)
 
-- **[Diagrama](https://drawsql.app/teams/danilos-team-1/diagrams/rede-social)**
-
-Diagrama ER da API definindo bem as relações entre as tabelas do banco de dados.
+Diagrama ER da API definindo as relações entre as tabelas do banco de dados.
 
 ## 3. Documentação
 [ Voltar para o topo ](#tabela-de-conteúdos)
