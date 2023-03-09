@@ -2,13 +2,13 @@ from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
 from .serializers import LikeSerializer
-from rest_framework.generics import CreateAPIView, DestroyAPIView
+from rest_framework.generics import CreateAPIView, DestroyAPIView, ListCreateAPIView
 from posts.models import Post
 from .models import Like
 from users.permissions import IsAuthenticatedAndAccountOwner
 
 
-class LikeView(CreateAPIView):
+class LikeView(ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
