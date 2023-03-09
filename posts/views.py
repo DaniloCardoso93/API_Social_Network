@@ -16,6 +16,7 @@ class PostView(ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+
 class PostDetailView(RetrieveUpdateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly, PostPermission]
@@ -23,5 +24,3 @@ class PostDetailView(RetrieveUpdateAPIView):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializer
-
-    

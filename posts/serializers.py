@@ -12,17 +12,17 @@ class PostSerializer(serializers.ModelSerializer):
             "private",
             "can_comment",
             "user_id",
-            "like",
-            "comment",
+            "likes",
+            "comments",
         ]
 
-        read_only_fields = ["user_id", "created_at"]
+        read_only_fields = ["user_id", "created_at", "likes", "comments"]
 
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
-    
+
     def update(self, instance: Post, validated_data: dict) -> Post:
         for key, value in validated_data.items():
             setattr(instance, key, value)
-        instance.save()  
+        instance.save()
         return instance

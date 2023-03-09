@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from .models import User
+import ipdb
+from django.forms.models import model_to_dict
 
 # def choices_error_message(choices_class):
 #     valid_choices = [choice[0] for choice in choices_class]
@@ -9,6 +11,8 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    followers = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = [
@@ -20,11 +24,11 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "birthdate",
             "gender",
-            "followers_friendships"
+            "followers",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
-            "followers_friendships": {"read_only": True}
+            "followers": {"read_only": True},
         }
 
     def create(self, validated_data: dict) -> User:
@@ -38,3 +42,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+    def get_followers(self, obj: User):
+        return [{"follower_id": follower.id, "follower_username": follower.username}
+                 for follower in obj.followers.all()]
