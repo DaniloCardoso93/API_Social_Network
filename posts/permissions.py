@@ -8,6 +8,11 @@ class IsFollowerOrFriendPermission(permissions.BasePermission):
     def has_object_permission(self, request, view: View, obj: Post) -> bool:
         post_owner = User.objects.get(id=obj.user_id)
 
+        allowed_methods = ["PATCH", "DELETE"]
+
+        if request.method in allowed_methods:
+            return post_owner == request.user
+
         if post_owner == request.user:
             return True
 
@@ -21,5 +26,5 @@ class IsFollowerOrFriendPermission(permissions.BasePermission):
                     return friend.invitation == "Accepted"
         else:
             return True
-
+            
         return False
