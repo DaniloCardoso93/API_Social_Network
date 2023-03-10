@@ -5,9 +5,11 @@ from followers_friendships.models import Friendship
 import ipdb
 from django.forms.models import model_to_dict
 
+
 class UserSerializer(serializers.ModelSerializer):
     followers = serializers.SerializerMethodField()
     friends = serializers.SerializerMethodField()
+
     class Meta:
         model = User
         fields = [
@@ -20,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
             "birthdate",
             "gender",
             "followers",
-            "friends"
+            "friends",
         ]
         extra_kwargs = {
             "password": {"write_only": True},
@@ -55,10 +57,18 @@ class UserSerializer(serializers.ModelSerializer):
 
         for friend in friends:
             if friend.sending_user == obj:
-               list.append({"friend_id":friend.receiving_user.id, "friend_user": friend.receiving_user.username})
+                list.append(
+                    {
+                        "friend_id": friend.receiving_user.id,
+                        "friend_user": friend.receiving_user.username,
+                    }
+                )
             if friend.receiving_user == obj:
-                list.append({"friend_id": friend.sending_user.id, "friend_user": friend.sending_user.username})
+                list.append(
+                    {
+                        "friend_id": friend.sending_user.id,
+                        "friend_user": friend.sending_user.username,
+                    }
+                )
 
         return list
-
-        
