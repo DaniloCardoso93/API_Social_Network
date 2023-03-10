@@ -46,6 +46,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "rest_framework",
+    "drf_spectacular"
 ]
 
 MY_APPS = [
@@ -135,8 +136,8 @@ REST_FRAMEWORK = {
 }
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "API",
-    "DESCRIPTION": "Projeto final",
+    "TITLE": "Api Rede Social",
+    "DESCRIPTION": "Essa API permite que os usuários criem uma conta de rede social, façam amigos, sigam outros usuários, criem posts, curtam e comentem posts.",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
     # OTHER SETTINGS
