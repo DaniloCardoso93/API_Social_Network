@@ -5,8 +5,11 @@ from .serializers import LikeSerializer
 from rest_framework.generics import DestroyAPIView, ListCreateAPIView
 from posts.models import Post
 from .models import Like
-from users.permissions import IsAuthenticatedAndAccountOwner
+from users.permissions import IsAccountOwnerOrReadOnly
 from drf_spectacular.utils import extend_schema
+from .exceptions import AlreadyLikedError
+from rest_framework.views import Response, status
+from rest_framework.exceptions import NotFound
 
 
 class LikeView(ListCreateAPIView):
@@ -24,31 +27,36 @@ class LikeView(ListCreateAPIView):
         summary="Listagem de Curtidas",
         tags=["Tag Curtidas"],
     )
-
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
-    
+
     @extend_schema(
         responses={201},
         description="Rota para Adição de curtidas",
         summary="Adição de Curtidas",
         tags=["Tag Curtidas"],
     )
-    
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
 
     def perform_create(self, serializer: LikeSerializer):
         post: Post = get_object_or_404(Post, id=self.kwargs[self.lookup_url_kwarg])
+        for like in post.likes.all():
+            if like.user.id == self.request.user.id:
+                raise AlreadyLikedError("You already liked this post")
+
         return serializer.save(user=self.request.user, post=post)
+
+    def get_queryset(self):
+
+        return Like.objects.filter(post_id=self.kwargs[self.lookup_url_kwarg])
 
 
 class LikeDetailView(DestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticatedAndAccountOwner]
+    permission_classes = [IsAccountOwnerOrReadOnly]
 
     queryset = Like.objects.all()
-
     lookup_url_kwarg = "like_id"
 
     @extend_schema(
@@ -57,6 +65,5 @@ class LikeDetailView(DestroyAPIView):
         summary="Remoção de Curtidas",
         tags=["Tag Curtidas"],
     )
-
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
