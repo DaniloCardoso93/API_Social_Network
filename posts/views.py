@@ -40,6 +40,7 @@ class PostView(ListCreateAPIView):
 class PostDetailView(RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsFollowerOrFriendPermission]
+    
     lookup_url_kwarg = "post_id"
 
     queryset = Post.objects.all()

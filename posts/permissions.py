@@ -7,6 +7,7 @@ from rest_framework.views import View
 class IsFollowerOrFriendPermission(permissions.BasePermission):
     def has_object_permission(self, request, view: View, obj: Post) -> bool:
         post_owner = User.objects.get(id=obj.user_id)
+
         allowed_methods = ["PATCH", "DELETE"]
 
         if request.method in allowed_methods:
@@ -25,5 +26,5 @@ class IsFollowerOrFriendPermission(permissions.BasePermission):
                     return friend.invitation == "Accepted"
         else:
             return True
-
+            
         return False

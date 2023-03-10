@@ -1,13 +1,6 @@
 from rest_framework import serializers
-from .models import User
-import ipdb
-from django.forms.models import model_to_dict
-
-# def choices_error_message(choices_class):
-#     valid_choices = [choice[0] for choice in choices_class]
-#     message = ", ".join(valid_choices).rsplit(",", 1)
-
-#     return "Choose between " + " and".join(message) + "."
+from .models import User, UserGender
+from utils.utils import choices_error_message
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -29,6 +22,9 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "password": {"write_only": True},
             "followers": {"read_only": True},
+            "gender": {
+                "error_messages": {"invalid_choice": choices_error_message(UserGender)}
+            },
         }
 
     def create(self, validated_data: dict) -> User:
@@ -44,5 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
         return instance
 
     def get_followers(self, obj: User):
-        return [{"follower_id": follower.id, "follower_username": follower.username}
-                 for follower in obj.followers.all()]
+        return [
+            {"follower_id": follower.id, "follower_username": follower.username}
+            for follower in obj.followers.all()
+        ]
