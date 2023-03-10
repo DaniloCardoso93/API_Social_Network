@@ -2,7 +2,7 @@ from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIV
 from .models import User
 from .serializers import UserSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from .permissions import CanRetrieveUserOrReadPublicPostPermission
+from .permissions import IsAccountOwnerOrReadOnly
 from drf_spectacular.utils import extend_schema
 
 class UserView(ListCreateAPIView):
@@ -31,7 +31,7 @@ class UserView(ListCreateAPIView):
 
 class UserDetailView(RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [CanRetrieveUserOrReadPublicPostPermission]
+    permission_classes = [IsAccountOwnerOrReadOnly]
 
     lookup_url_kwarg = "user_id"
 

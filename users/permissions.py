@@ -5,9 +5,11 @@ from rest_framework.views import View, Request
 from ipdb import set_trace
 
 
-class IsAuthenticatedAndAccountOwner(permissions.BasePermission):
+class IsAccountOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request: Request, view: View, obj: Comment) -> bool:
-        return request.user.is_authenticated and request.user == obj.user
+        if request.method == "GET":
+            return True
+        return request.user.is_authenticated and request.user == obj
 
 
 class IsCommentOrPostOwner(permissions.BasePermission):
