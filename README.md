@@ -34,7 +34,7 @@ Diagrama ER da API definindo as relações entre as tabelas do banco de dados.
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
-*Com o servidor rodando* **[Documentação](api-rede-social-production.up.railway.app/api/docs/swagger-ui/)**
+*Link com a documentação* -> api-rede-social-production.up.railway.app/api/docs/swagger-ui/
 
 ## 4. Rodando localmente
 
