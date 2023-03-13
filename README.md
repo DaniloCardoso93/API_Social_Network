@@ -24,17 +24,17 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 
 ## 2. Diagrama ER
 
-![Diagrama ER](https://github.com/m5-projeto-final-lucira-grupo28/api-rede-social/blob/develop/DER.png?raw=true)
-
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
 Diagrama ER da API definindo as relações entre as tabelas do banco de dados.
+
+![Diagrama ER](https://github.com/m5-projeto-final-lucira-grupo28/api-rede-social/blob/develop/DER.png?raw=true)
 
 ## 3. Documentação
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
 
-Link com a **[Documentação](Em breve)**
+*Com o servidor rodando* **[Documentação](http://127.0.0.1:8000/api/docs/swagger-ui/)**
 
 ## 4. Rodando localmente
 
