@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["api-rede-social-production.up.railway.app", "0.0.0.0"]
+ALLOWED_HOSTS = ["api-rede-social-production.up.railway.app", "0.0.0.0", "localhost"]
 RAILWAY_STATIC_URL = os.getenv("RAILWAY_STATIC_URL")
 
 if RAILWAY_STATIC_URL:
