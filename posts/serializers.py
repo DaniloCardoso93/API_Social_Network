@@ -6,6 +6,7 @@ class PostSerializer(serializers.ModelSerializer):
     likes = serializers.SerializerMethodField()
     user = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
+    created_at = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
@@ -24,17 +25,20 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_likes(self, obj):
         return obj.likes.count()
-    
+
     def get_user(self, obj):
-        res = {
-            "user_id": obj.user.id,
-            "username": obj.user.username
-        }
+        res = {"user_id": obj.user.id, "username": obj.user.username}
         return res
-    
+
     def get_comments(self, obj: Post):
-        return [{"user_name": comment.user.username, "description": comment.description}
-                 for comment in obj.comments.all()]
+        return [
+            {"user_name": comment.user.username, "description": comment.description}
+            for comment in obj.comments.all()
+        ]
+
+    def get_created_at(self, obj: Post):
+        STR_FORMAT = "%d/%m/%y, %H:%M:%S"
+        return obj.created_at.strftime(STR_FORMAT)
 
     def create(self, validated_data):
         return Post.objects.create(**validated_data)
