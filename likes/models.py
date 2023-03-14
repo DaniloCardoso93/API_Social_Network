@@ -6,6 +6,9 @@ class Like(models.Model):
         ordering = ["id"]
 
     liked = models.BooleanField(default=True)
+
+    liked_at = models.DateTimeField(auto_now_add=True)
+
     user = models.ForeignKey(
         "users.User",
         on_delete=models.CASCADE,

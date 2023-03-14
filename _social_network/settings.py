@@ -154,6 +154,7 @@ SPECTACULAR_SETTINGS = {
     # OTHER SETTINGS
 }
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -163,7 +164,7 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
