@@ -5,11 +5,9 @@ from .serializers import LikeSerializer
 from rest_framework.generics import DestroyAPIView, ListCreateAPIView
 from posts.models import Post
 from .models import Like
-from users.permissions import IsAccountOwnerOrReadOnly
+from users.permissions import IsLikeOwnerOrReadOnly
 from drf_spectacular.utils import extend_schema
 from .exceptions import AlreadyLikedError
-from rest_framework.views import Response, status
-from rest_framework.exceptions import NotFound
 
 
 class LikeView(ListCreateAPIView):
@@ -48,13 +46,12 @@ class LikeView(ListCreateAPIView):
         return serializer.save(user=self.request.user, post=post)
 
     def get_queryset(self):
-
         return Like.objects.filter(post_id=self.kwargs[self.lookup_url_kwarg])
 
 
 class LikeDetailView(DestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAccountOwnerOrReadOnly]
+    permission_classes = [IsLikeOwnerOrReadOnly]
 
     queryset = Like.objects.all()
     lookup_url_kwarg = "like_id"
